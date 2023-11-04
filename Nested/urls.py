@@ -1,0 +1,16 @@
+
+from django.contrib import admin
+from django.urls import path,include
+from rest_framework.routers import DefaultRouter
+from api import views
+
+router = DefaultRouter()
+router.register('teacher',views.TeacherViewset,basename='teacher')
+router.register('student',views.StudentVieewset,basename='student')
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include(router.urls)),
+    path('auth/',include('rest_framework.urls',namespace='rest_framework')),
+
+]
